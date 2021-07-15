@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit user info</title>
+    <style>
+
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+
+    </style>
+</head>
+<body>
+<h1>Edit user info</h1>
+<table border="1">
+    <tr>
+        <th>name</th>
+        <th>lastName</th>
+        <th>E-mail</th>
+        <th>password</th>
+        <th>Roles</th>
+    </tr>
+    <tr>
+        <td th:text="${user.getName()}">VALUE</td>
+        <td th:text="${user.getLastName()}">VALUE</td>
+        <td th:text="${user.getEmail()}">VALUE</td>
+        <td th:text="${user.getPassword()}">VALUE</td>
+        <td th:text="${user.roles}">Roles</td>
+
+</table>
+
+<br>
+<a>You can edit user information by entering new data into the fields below</a>
+<br>
+<br>
+
+
+<form th:action="@{/admin/edit/{id}(id=${user.getId()})}" th:method="PATCH" th:object="${user}">
+    <label for="name">Name</label>
+    <input type="text" th:field="*{name}" id="name">
+
+    <label for="lastName">Last name</label>
+    <input type="text" th:field="*{lastName}" id="lastName">
+
+    <label for="email">E-mail</label>
+    <input type="text" th:field="*{email}" id="email">
+
+    <label for="pass">Password</label>
+    <input type="text" th:field="*{password}" id="pass">
+
+    <label for="role"><strong>Choose User's role</strong></label>
+
+    <select class="form-control" multiple name="listRoles" id="role"
+            size="1">
+        <option selected name="ROLE_USER" value="ROLE_USER">USER</option>
+        <option name="ROLE_ADMIN" value="ROLE_ADMIN">ADMIN</option>
+    </select>
+
+    <br><br>
+    <input type="submit" value="Apply changes">
+</form>
+
+<br>
+
+<form th:method="DELETE" th:action="@{/admin/delete/{id}(id=${user.getId()})}">
+    <input type="submit" value="delete"/>
+</form>
+
+<br><br>
+
+<a th:href="@{/logout}">Logout</a>
+
+</body>

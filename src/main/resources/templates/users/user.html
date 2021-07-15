@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>user info</title>
+    <style type="text/css">
+        TD {
+            vertical-align: top; /* Выравнивание по верхнему краю ячейки */
+        }
+        #col1 {
+            width: 20%; /* Ширина первой колонки */
+            background: #fc0; /* Цвет фона первой колонки */
+        }
+        #col2 {
+            width: 20%; /* Ширина второй колонки */
+            background: #f0f0f0; /* Цвет фона второй колонки */
+        }
+        #col3 {
+            width: 20%; /* Ширина третьей колонки */
+            background: #fc0; /* Цвет фона третьей колонки */
+        }
+        #col4 {
+            width: 20%; /* Ширина третьей колонки */
+            background: #fc0; /* Цвет фона третьей колонки */
+        }
+    </style>
+</head>
+<body>
+<h1 th:text="${user.getName()}"></h1>
+
+<table width="90%" cellpadding="5" cellspacing="0">
+    <tr>
+        <td id="col1">Name</td>
+        <td id="col2">LastName</td>
+        <td id="col3">E-mail</td>
+        <td id="col4">Password</td>
+    </tr>
+    <tr>
+        <td th:text="${user.getName()}">VALUE</td>
+        <td th:text="${user.getLastName()}">VALUE</td>
+        <td th:text="${user.getEmail()}">VALUE</td>
+        <td th:text="${user.getPassword()}">VALUE</td>
+
+    </tr>
+</table>
+
+<br>
+<a th:href="@{/logout}">Logout</a>
+
+
+</body>
+</html>
